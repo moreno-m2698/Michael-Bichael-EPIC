@@ -1,0 +1,17 @@
+[{
+    "atk": 4,
+    "defense": 3,
+    "maxHp": 40,
+    "currentHp": 10,
+    "name": "Treasure",
+    "epic": true
+},
+{
+    "atk": 4,
+    "defense": 3,
+    "maxHp": 10,
+    "currentHp": 10,
+    "name": "Black",
+    "epic": true
+}]
+

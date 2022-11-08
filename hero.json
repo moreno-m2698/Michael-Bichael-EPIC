@@ -1,0 +1,10 @@
+{"Michael":{
+    "atk": 14,
+    "defense": 13,
+    "maxHp": 100
+},
+"Bichael": {
+    "atk": 13,
+    "defense": 16,
+    "maxHp": 115 
+}}
