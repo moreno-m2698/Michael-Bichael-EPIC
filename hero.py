@@ -1,6 +1,7 @@
 import random
 import json
-
+import math
+from Classes.items import Items, Items2
 #Michael and Bichael the EPIC MINI Saga RPG
 
 #Hero class, hero is going to have hp, attk, defense, name
@@ -24,12 +25,17 @@ import json
 
 #Unit is the super class / parent class of slime and hero
 class Unit:
-    def __init__(self, name: str, atk: int, defense: int, maxHp: int):
+    def __init__(self, name: str, atk: int, defense: int, maxHp: int, magic: int, level: int, agil: int):
         self.name = name
         self.atk = atk
         self.defense = defense
         self.maxHp = maxHp
         self.currentHp = self.maxHp
+        self.magic = magic
+        self.agil = agil
+        self.status = False
+        self.level = level
+        
 
     def __str__(self):
         return f' {self.name}: Health:{self.currentHp}/{self.maxHp}' 
@@ -70,10 +76,29 @@ class Unit:
 
 class Hero(Unit):
     #these are dunder functions __x___
-    def __init__(self, name: str, atk: int, defense: int, maxHp: int):
-        super().__init__(name, atk, defense, maxHp)
+    def __init__(self, name: str, atk: int, defense: int, maxHp: int, magic: int, level: int, agil: int):
+        super().__init__(name, atk, defense, maxHp, magic, level, agil)
         self.healthpots = 5
-        self.slimesKilled = 0
+        self.monstersKilled = 0
+        self.currentExp= 0
+        self.expNext = 0
+
+    def levelUpCheck(self, monster):
+        
+        expEarn = monster(level) * monster(exp)
+
+        self.currentExp += expEarn
+
+        if self.expNext <= self.currentExp:
+            
+            self.currentExp -= self.expNext
+            self.level += 1
+            # Come back later to get this
+
+    
+    def requiredExp(self):
+        reqExp: int
+        reqExp = int(self.level * math.log10(self.level))
         
 
     def __str__(self):
@@ -118,7 +143,7 @@ class Hero(Unit):
         print(f'{self.name} looks intently at the {slime.type} slime.\n{slime.type} slime  has {slime.atk} attack and {slime.defense} defense.')
 
     def heroSelection(name):
-        heroFile = open('hero.json')
+        heroFile = open('JSON/hero.json')
         heroDict = json.load(heroFile)
 
         hero = heroDict[name]
@@ -197,7 +222,7 @@ class Slime(Unit):
 
 
         return Slime(slime['atk'], slime['defense'], slime['maxHp'], slime['currentHp'], slime['type'])
-            
+
 
 
 
@@ -269,6 +294,10 @@ def main():
 
                     elif action == 4:
                         break
+
+                    else:
+
+                        print('Please give a valid input')
 
 
 
