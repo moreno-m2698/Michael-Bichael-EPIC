@@ -1,0 +1,31 @@
+{"Health Pot": {
+    "description": "Instantly heals for 20 HP - Single time use.",
+    "id": 1000,
+    "baseChance": 10
+},
+"Mana Pot": {
+    "description": "Instantly grants 10 MP - Single time use.",
+    "id": 1001,
+    "baseChance": 10
+},
+"Rock": {
+    "description": "Throw a rock at a target and deal damage - Single time use.",
+    "id": 1002,
+    "baseChance": 10
+},
+"Lesser Healing Pot": {
+    "description": "Heals 8 health over the course of 2 turns - Single time use.",
+    "id": 1003,
+    "baseChance": 10
+},
+"Damaging Tonic": {
+    "description": "Throw at an enemy and damage them for 32 damage over 4 turns - Single time use.",
+    "id": 1004,
+    "baseChance": 10
+},
+"Blessed Water": {
+    "description" : "Mysterious water, perhaps drinking it will do something - Single time use.",
+    "id": 1005,
+    "baseChance": 20
+}
+}
