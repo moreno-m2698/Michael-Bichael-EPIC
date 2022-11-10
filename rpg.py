@@ -1,7 +1,8 @@
 import random
 import json
 import math
-from Classes.actions import Items, Items2
+from Classes.actions import Items
+from Classes.playerLogic import Hero
 #Michael and Bichael the EPIC MINI Saga RPG
 
 #Hero class, hero is going to have hp, attk, defense, name
