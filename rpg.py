@@ -82,6 +82,8 @@ class Hero(Unit):
         self.monstersKilled = 0
         self.currentExp= 0
         self.expNext = 0
+        self.manaMax = manaMax
+        self.manaCurrent = self.manaMax
 
     def levelUpCheck(self, monster):
         
@@ -93,12 +95,8 @@ class Hero(Unit):
             
             self.currentExp -= self.expNext
             self.level += 1
+            Hero.requiredExp(self)
             # Come back later to get this
-
-    
-    def requiredExp(self):
-        reqExp: int
-        reqExp = int(self.level * math.log10(self.level))
         
 
     def __str__(self):
@@ -149,8 +147,6 @@ class Hero(Unit):
         hero = heroDict[name]
 
         return Hero(name, hero['atk'], hero['defense'], hero['maxHp'])
-
-
     
     def findPotion(self, amount):
 
