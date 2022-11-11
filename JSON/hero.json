@@ -4,7 +4,9 @@
     "maxHp": 100,
     "magic": 14,
     "level": 5,
-    "agil": 0
+    "agil": 1,
+    "luck": 0,
+    "maxMana": 30
 
 },
 "Bichael": {
@@ -13,5 +15,7 @@
     "maxHp": 115,
     "magic": 15,
     "level": 5,
-    "agil": 0 
+    "agil": 1,
+    "luck": 0,
+    "maxMana": 35
 }}
