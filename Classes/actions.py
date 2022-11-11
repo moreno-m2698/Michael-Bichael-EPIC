@@ -1,4 +1,5 @@
 import random
+import json
 
 class Action:
     def __init__(self, name, description, id):
@@ -10,19 +11,31 @@ class Action:
 
 
 class Items(Action):
-    def __init__(self, name, description, id, baseChance):
+    def __init__(self, name, description, id):
         super().__init__(self, name, description, id)
-        self.baseChance = baseChance
-        self.amount = 3
         
-    def itemDrop(self, hero, monster):
-        if monster.epic:
-            if random.randint(1,self.baseChance) == 1:
-                hero.findItem(1)
 
+    def __str__(self):
+
+        print(f'{self.name}: {self.description}')
+        
+    def itemDrop(self, monster):
+        if monster.epic:
+            self.amounnt += 3
 
         else:
-            hero.findItem(3)    
+            if random.randint(1,monster.baseChanceDrops) == 1:
+                self.amount += 2  
+
+    def itemSpawn(id):
+        itemFile = open('JSON/itemList.json')
+        itemDict = json.load(itemFile)
+        item = itemDict[id]
+
+        return Items(item['name'], item['description'], id)
+
+
+    
         
         
 class Specials(Action):

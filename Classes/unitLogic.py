@@ -27,6 +27,10 @@ class Unit:
     def __str__(self):
         return f' {self.trueName}: Health:{self.currentHp}/{self.maxHp}' 
 
+    def dodge(self):
+        success = 1 == random.randint(1, 100 -  (2 * self.agil) - self.luck)
+        return success
+
     
     def attack(self, target):
         # damage = 0
@@ -39,19 +43,22 @@ class Unit:
 
         print(f'{self.name} attacked the {target.name} slime!')
 
-        critChance = random.randint(1, 50 - (2 * self.luck) - self.agil)
-
-        damage = 0
-        if critChance == 1:
-            print('It was a critical hit!')
-            damage = int(self.atk * 100 / (100 + target.defense) * 2)
+        if Unit.dodge(target):
+            print(f'{target.name} dodged the attack!')
+            
         else:
-            damage = int(self.atk * 100 / (100 + target.defense))
+            critChance = random.randint(1, 50 - (2 * self.luck) - self.agil)
+            damage = 0
+            if critChance == 1:
+                print('It was a critical hit!')
+                damage = int(self.atk * 100 / (100 + target.defense) * 2)
+            else:
+                damage = int(self.atk * 100 / (100 + target.defense))
 
-        print(f'{self.name} did {damage} damage.')
-        target.currentHp -= damage
+            print(f'{self.name} did {damage} damage.')
+            target.currentHp -= damage
 
-        return target.currentHp
+            return target.currentHp
 
     def generateMonsterJSON():
         monsterFile = open('JSON/monsterList.json')

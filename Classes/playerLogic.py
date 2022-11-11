@@ -14,12 +14,14 @@ class Hero(Unit):
         self.expNext = 0
         self.manaMax = manaMax
         self.manaCurrent = self.manaMax
-        self.inventory = {}
+        self.inventory = {"Health Pot" : 3}
+
+    def Inventory(self):
+        for items in self.inventory:
+            print(f'{items} : {self.inventory[items]}  |  ')
+        
 
 
-    def AccessInventory():
-            print('Items:')
-            return f'{self.inventory}'        
 
     def levelUpCheck(self, monster):
         

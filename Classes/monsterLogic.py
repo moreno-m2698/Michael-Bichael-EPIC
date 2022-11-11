@@ -3,10 +3,11 @@ import math
 from unitLogic import Unit
 
 class Monster(Unit):
-    def __init__(self, atk: int, defense: int, maxHp: int, name: str):
+    def __init__(self, atk: int, defense: int, maxHp: int, name: str, drops: str, self.baseChanceDrops):
         super().__init__(name, atk, defense, maxHp)
         self.isEpic = False
-        
+        self.drops = drops
+        self.baseChanceDrops
 
     def __str__(self):
         
