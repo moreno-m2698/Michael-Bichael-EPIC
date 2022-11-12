@@ -34,7 +34,7 @@ def main():
 
                 if turn == 0:
 
-                    # Player turn 
+                    # Player turn
                     print(hero)
                     print(enemy)
 
@@ -49,7 +49,7 @@ def main():
                         if enemy.currentHp <= 0:
 
                             print(f'You defeated the {enemy.name}!')
-                            Hero.rewards(hero,enemy)
+                            gameLogic.rewards(hero,enemy)
                             
                             break
 

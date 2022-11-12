@@ -12,20 +12,12 @@ class Action:
 
 class Items(Action):
     def __init__(self, name, description, id):
-        super().__init__(self, name, description, id)
-        
+        super().__init__(name, description, id) 
 
     def __str__(self):
 
         print(f'{self.name}: {self.description}')
         
-    def itemDrop(self, monster):
-        if monster.epic:
-            self.amounnt += 3
-
-        else:
-            if random.randint(1,monster.baseChanceDrops) == 1:
-                self.amount += 2  
 
     def itemSpawn(id):
         itemFile = open('JSON/itemList.json')
@@ -33,6 +25,7 @@ class Items(Action):
         item = itemDict[id]
 
         return Items(item['name'], item['description'], id)
+    
 
 
     

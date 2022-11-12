@@ -24,4 +24,27 @@ def encounter():
             return monster2
         else:
             print('Please give a valid value')
+
+def rewards(hero, monster):
+        #This caused an issue:
+
+        #Logic behind it, make a list so that we can scan the dictionary keys but then call for the values of the keys using the dictionary and not the newly created list
+        dropsList = list(monster.drops)
+        print(hero.inventory)
+        for id in dropsList:
+            realItems = Items.itemSpawn(id)
+            counter = 0
+            success = 0
+            while counter < monster.drops[id]['cycles']:
+                if 1 == monster.drops[id]['chance']:
+                    if realItems in hero.inventory:
+                        hero.inventory[realItems] += 1
+                        
+                    else:
+                        hero.inventory[realItems] = 1
+                    success += 1
+                counter += 1
+            if success != 0:
+        
+                print(hero.inventory)            
         

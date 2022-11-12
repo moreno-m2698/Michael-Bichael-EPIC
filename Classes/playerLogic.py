@@ -2,6 +2,7 @@ import random
 import math
 from Classes.unitLogic import Unit
 import json
+from Classes.actions import Items
 
 
 
@@ -55,29 +56,19 @@ class Hero(Unit):
 
         return Hero(name, hero['atk'], hero['defense'], hero['maxHp'],hero['magic'], hero['level'], hero['agil'], hero['luck'], hero['maxMana'])
     
+    def giveItem(self, item, amount):
 
-    def rewards(self, monster):
-        #This caused an issue:
+        if amount != 1:
+            print(f'{self.name} found {amount} {item}s!')
 
-        #Logic behind it, make a list so that we can scan the dictionary keys but then call for the values of the keys using the dictionary and not the newly created list
-        dropsList = list(monster.drops)
-        print(self.inventory)
-        for items in dropsList:
-            
-            counter = 0
-            success = 0
-            while counter < monster.drops[items]['cycles']:
-                if 1 == monster.drops[items]['chance']:
-                    if items in self.inventory:
-                        self.inventory[items] += 1
-                        
-                    else:
-                        self.inventory[items] = 1
-                    success += 1
-                counter += 1
-            if success != 0:
-                print(f'{self.name} found {items} : {success}')
-                print(self.inventory)
+        else:
+            print(f'{self.name} found ')
+
+
+    def inventoryAccess():
+        pass
+
+
                 
 
         
