@@ -14,7 +14,7 @@ class Hero(Unit):
         self.expNext = 0
         self.manaMax = manaMax
         self.manaCurrent = self.manaMax
-        self.inventory = {"Health Pot" : 3}
+        self.inventory = {}
 
     def Inventory(self):
         for items in self.inventory:
@@ -57,21 +57,28 @@ class Hero(Unit):
     
 
     def rewards(self, monster):
+        #This caused an issue:
 
+        #Logic behind it, make a list so that we can scan the dictionary keys but then call for the values of the keys using the dictionary and not the newly created list
         dropsList = list(monster.drops)
-        print(dropsList)
-        print()
+        print(self.inventory)
         for items in dropsList:
-            print(items['cycles'])
-            # counter = 0
-            # success = 0
-            # while counter < int(dropsList[items]['cycles']):
-            #     if 1 == int(dropsList[items]['chance']):
-            #         self.inventory[items] += 1
-            #         success += 1
-            # if success != 0:
-            #     print(f'{self.name} found {items} : {success}')
-
+            
+            counter = 0
+            success = 0
+            while counter < monster.drops[items]['cycles']:
+                if 1 == monster.drops[items]['chance']:
+                    if items in self.inventory:
+                        self.inventory[items] += 1
+                        
+                    else:
+                        self.inventory[items] = 1
+                    success += 1
+                counter += 1
+            if success != 0:
+                print(f'{self.name} found {items} : {success}')
+                print(self.inventory)
+                
 
         
 
