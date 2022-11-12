@@ -17,8 +17,8 @@ class Monster(Unit):
         
         return f'{super().__str__()} |'
 
-    def generateMonsterJSON():
-            monsterFile = open('JSON/monsterList.json')
+    def generateMonsterJSON(file):
+            monsterFile = open(file)
             monsterDict = json.load(monsterFile)
     
             monsterKey = random.choice(list(monsterDict))
@@ -26,8 +26,8 @@ class Monster(Unit):
             monsterSubKey = random.choice(list(monsterDict[monsterKey]))
             name = f'{monsterSubKey} {monsterKey}'
 
-            return Monster(name, monsterDict[monsterKey][monsterSubKey]['atk'], monsterDict[monsterKey][monsterSubKey]['defense'], monsterDict[monsterKey][monsterSubKey]['maxHp'],\
-                monsterDict[monsterKey][monsterSubKey]['magic'], monsterDict[monsterKey][monsterSubKey]['level'], monsterDict[monsterKey][monsterSubKey]['agil'],
-                monsterDict[monsterKey][monsterSubKey]['luck'], monsterDict[monsterKey][monsterSubKey]['drops'])
+            m = monsterDict[monsterKey][monsterSubKey]
+
+            return Monster(name, m['atk'], m['defense'], m['maxHp'], m['magic'], m['level'], m['agil'], m['luck'], m['drops'])
     
 

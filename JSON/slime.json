@@ -1,17 +1,46 @@
-[{
-    "atk": 4,
-    "defense": 3,
-    "maxHp": 40,
-    "currentHp": 10,
-    "name": "Treasure",
-    "epic": true
-},
-{
-    "atk": 4,
-    "defense": 3,
-    "maxHp": 10,
-    "currentHp": 10,
-    "name": "Black",
-    "epic": true
-}]
-
+{"Slime": {
+    "Blue": {
+        "atk": 7,
+        "defense": 2,
+        "maxHp": 25,
+        "magic": 0,
+        "level": 0,
+        "agil": 0,
+        "luck": 0,
+        "drops": { 
+            "1001" : {
+                "cycles": 2,
+                "chance": 1
+        }
+        }
+        },
+    "Green": {
+        "atk": 6,
+        "defense": 0,
+        "maxHp": 14,
+        "magic": 0,
+        "level": 0,
+        "agil": 0,
+        "luck": 0,
+        "drops": { 
+            "1001" : {
+                "cycles": 2,
+                "chance": 1
+        }
+        }
+        },
+    "Red":{
+        "atk": 12,
+        "defense": 4,
+        "maxHp": 35,
+        "magic": 0,
+        "level": 0,
+        "agil": 0,
+        "luck": 0,
+        "drops": { 
+            "1001" : {
+                "cycles": 2,
+                "chance": 1
+        }
+        }
+        }}}

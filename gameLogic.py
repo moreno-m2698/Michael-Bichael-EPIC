@@ -6,11 +6,11 @@ from Classes.playerLogic import Hero
 from Classes.monsterLogic import Monster
 
 def encounter():
-    
-    monster1 = Monster.generateMonsterJSON()
-    monster2 = Monster.generateMonsterJSON()
+    fileInUse = 'JSON/slime.json'
+    monster1 = Monster.generateMonsterJSON(fileInUse)
+    monster2 = Monster.generateMonsterJSON(fileInUse)
     while monster1.name == monster2.name:
-        monster2 = Monster.generateMonsterJSON()
+        monster2 = Monster.generateMonsterJSON(fileInUse)
 
     print(f'You see a {monster1.name} and a {monster2.name} in the distance.\nWhich one do you choice to fight?')
     

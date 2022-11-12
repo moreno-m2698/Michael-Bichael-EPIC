@@ -3,29 +3,6 @@ import json
 import math
 from Classes.actions import Items
 from Classes.playerLogic import Hero
-#Michael and Bichael the EPIC MINI Saga RPG
-
-#Hero class, hero is going to have hp, attk, defense, name
-
-#Make a slime class
-
-#Ask user whether they want to play as Bichael or Michael
-
-#Enter a gameloop where you fight vs a slime, if you reduce the slime's hp to 0 you win and the game stops, if it reduces your hp you lose and u suck
-
-# Every loop, you get to either attack (hit the slime), or do nothing
-
-#You and the slime take turns, the slime can only attack you, you always attack before the slime (You go first)
-
-#Attacks from either you or the slime can be critical hits and deal double damage
-
-#User is asked for input every turn on whether they want to attack or pass, every attack and dmg calculation is printed to the screen
-
-#dmg calculation method
-
-
-#Unit is the super class / parent class of slime and hero
-
 
 def main():            
 
