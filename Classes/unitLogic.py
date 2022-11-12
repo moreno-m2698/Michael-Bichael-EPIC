@@ -7,7 +7,7 @@ from Classes.actions import Items
 
 
 class Unit:
-    def __init__(self, name: str, atk: int, defense: int, maxHp: int, magic: int, level: int, agil: int):
+    def __init__(self, name: str, atk: int, defense: int, maxHp: int, magic: int, level: int, agil: int, luck: int):
         self.name = name
         self.atk = atk
         self.defense = defense
@@ -15,6 +15,7 @@ class Unit:
         self.currentHp = self.maxHp
         self.magic = magic
         self.agil = agil
+        self.luck = luck
         self.level = level
 
     def __str__(self):
@@ -33,6 +34,7 @@ class Unit:
             print(f'{target.name} dodged the attack!')
             
         else:
+
             critChance = random.randint(1, 50 - (2 * self.luck) - self.agil)
             damage = 0
             if critChance == 1:

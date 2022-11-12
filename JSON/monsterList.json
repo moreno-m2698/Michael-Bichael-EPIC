@@ -5,7 +5,14 @@
         "maxHp": 25,
         "magic": 0,
         "level": 0,
-        "agil": 0
+        "agil": 0,
+        "luck": 0,
+        "drops": { 
+            "1001" : {
+                "cycles": 2,
+                "chance": 10
+        }
+        }
         },
     "Green": {
         "atk": 6,
@@ -13,7 +20,14 @@
         "maxHp": 14,
         "magic": 0,
         "level": 0,
-        "agil": 0
+        "agil": 0,
+        "luck": 0,
+        "drops": { 
+            "1001" : {
+                "cycles": 2,
+                "chance": 10
+        }
+        }
         },
     "Red":{
         "atk": 12,
@@ -21,7 +35,14 @@
         "maxHp": 35,
         "magic": 0,
         "level": 0,
-        "agil": 0
+        "agil": 0,
+        "luck": 0,
+        "drops": { 
+            "1001" : {
+                "cycles": 2,
+                "chance": 10
+        }
+        }
         },
     "Purple":{
         "atk": 12,
@@ -29,7 +50,14 @@
         "maxHp": 40,
         "magic": 0,
         "level": 0,
-        "agil": 0
+        "agil": 0,
+        "luck": 0,
+        "drops": { 
+            "1001" : {
+                "cycles": 2,
+                "chance": 10
+        }
+        }
         },
     "Yellow":{
         "atk": 15,
@@ -37,7 +65,15 @@
         "maxHp": 45,
         "magic": 0,
         "level": 0,
-        "agil": 0
+        "agil": 0,
+        "luck": 0,
+        "drops": { 
+            "1001" : {
+                "cycles": 2,
+                "chance": 10
+        
+        }    
+        }
         },
     "Black": {
         "atk": 15,
@@ -45,7 +81,14 @@
         "maxHp": 45,
         "magic": 0,
         "level": 0,
-        "agil": 0
+        "agil": 0,
+        "luck": 0,
+        "drops": { 
+            "1001" : {
+                "cycles": 2,
+                "chance": 10
+        }
+        }
         },
     "Golden": {
         "atk": 2,
@@ -53,7 +96,14 @@
         "maxHp": 300,
         "magic": 0,
         "level": 0,
-        "agil": 0
+        "agil": 0,
+        "luck": 0,
+        "drops": { 
+            "1001" : {
+                "cycles": 2,
+                "chance": 10
+        }
+        }
         }
     },
 "Zombie": {
@@ -63,7 +113,14 @@
         "maxHp": 45,
         "magic": 0,
         "level": 0,
-        "agil": 1
+        "agil": 1,
+        "luck": 0,
+        "drops": { 
+            "1001" : {
+                "cycles": 2,
+                "chance": 10
+        }
+        }
         },
     "Paladin":{
         "atk":9,
@@ -71,7 +128,14 @@
         "maxHp": 60,
         "magic": 0,
         "level": 0,
-        "agil": 1
+        "agil": 1,
+        "luck": 0,
+        "drops": { 
+            "1001" : {
+                "cycles": 2,
+                "chance": 10
+        }
+        }
         },
     "Wizard": {
         "atk": 9,
@@ -79,7 +143,14 @@
         "maxHp": 55,
         "magic": 15,
         "level": 0,
-        "agil": 1
+        "agil": 1,
+        "luck": 0,
+        "drops": { 
+            "1001" : {
+                "cycles": 2,
+                "chance": 10
+        }
+        }
         }
     },
 "Skeleton": {
@@ -89,7 +160,14 @@
         "maxHp": 66,
         "magic": 0,
         "level": 0,
-        "agil": 1
+        "agil": 1,
+        "luck": 0,
+        "drops": { 
+            "1001" : {
+                "cycles": 2,
+                "chance": 10
+        }
+        }
         },
     "Paladin":{
         "atk":14,
@@ -97,7 +175,14 @@
         "maxHp": 80,
         "magic": 0,
         "level": 0,
-        "agil": 1
+        "agil": 1,
+        "luck": 0,
+        "drops": { 
+            "1001" : {
+                "cycles": 2,
+                "chance": 10
+        }
+        }
         },
     "Wizard": {
         "atk": 10,
@@ -105,7 +190,14 @@
         "maxHp": 58,
         "magic": 20,
         "level": 0,
-        "agil": 1
+        "agil": 1,
+        "luck": 0,
+        "drops": { 
+            "1001" : {
+                "cycles": 2,
+                "chance": 10
+        }
+        }
         },
     "Archer": {
         "atk": 14,
@@ -113,8 +205,14 @@
         "maxHp": 58,
         "magic": 20,
         "level": 0,
-        "agil": 3
+        "agil": 3,
+        "luck": 0,
+        "drops": { 
+            "1001" : {
+                "cycles": 2,
+                "chance": 10
+        }
+        }
         }
 }
-
 }

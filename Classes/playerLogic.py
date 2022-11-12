@@ -8,8 +8,7 @@ import json
 class Hero(Unit):
     #these are dunder functions __x___
     def __init__(self, name: str, atk: int, defense: int, maxHp: int, magic: int, level: int, agil: int, luck: int, manaMax:int):
-        super().__init__(name, atk, defense, maxHp, magic, level, agil)
-        self.luck = luck
+        super().__init__(name, atk, defense, maxHp, magic, level, agil, luck)
         self.monstersKilled = 0
         self.currentExp= 0
         self.expNext = 0
@@ -36,7 +35,7 @@ class Hero(Unit):
             # Come back later to get this
         
     def __str__(self):
-        return f'{super().__str__()} |'
+        return f'{super().__str__()} | {self.manaCurrent} / {self.manaMax}'
     
     #Void function/None functions -> functions that dont have returns / dont give anything back / not expressions
     
@@ -56,11 +55,27 @@ class Hero(Unit):
 
         return Hero(name, hero['atk'], hero['defense'], hero['maxHp'],hero['magic'], hero['level'], hero['agil'], hero['luck'], hero['maxMana'])
     
-    def findItem(self, amount):
 
-        print(f'{self.name} found {amount} potion')
+    def rewards(self, monster):
 
-        self.healthpots += amount
+        dropsList = list(monster.drops)
+        print(dropsList)
+        print()
+        for items in dropsList:
+            print(items['cycles'])
+            # counter = 0
+            # success = 0
+            # while counter < int(dropsList[items]['cycles']):
+            #     if 1 == int(dropsList[items]['chance']):
+            #         self.inventory[items] += 1
+            #         success += 1
+            # if success != 0:
+            #     print(f'{self.name} found {items} : {success}')
+
+
+        
+
+
 
 
 

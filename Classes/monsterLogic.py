@@ -2,10 +2,12 @@ import random
 import math
 from Classes.unitLogic import Unit
 import json
+from Classes.playerLogic import Hero
 
 class Monster(Unit):
-    def __init__(self, name: str, atk: int, defense: int, maxHp: int, magic: int, level: int, agil: int):
-        super().__init__(name, atk, defense, maxHp, magic, level,agil)
+    def __init__(self, name: str, atk: int, defense: int, maxHp: int, magic: int, level: int, agil: int, luck: int, drops: dict):
+        super().__init__(name, atk, defense, maxHp, magic, level,agil, luck)
+        self.drops = drops
         self.isEpic = False
         # self.drops = drops
         # self.baseChanceDrops = baseChanceDrops
@@ -25,5 +27,7 @@ class Monster(Unit):
             name = f'{monsterSubKey} {monsterKey}'
 
             return Monster(name, monsterDict[monsterKey][monsterSubKey]['atk'], monsterDict[monsterKey][monsterSubKey]['defense'], monsterDict[monsterKey][monsterSubKey]['maxHp'],\
-             monsterDict[monsterKey][monsterSubKey]['magic'], monsterDict[monsterKey][monsterSubKey]['level'], monsterDict[monsterKey][monsterSubKey]['agil'])
-        
+                monsterDict[monsterKey][monsterSubKey]['magic'], monsterDict[monsterKey][monsterSubKey]['level'], monsterDict[monsterKey][monsterSubKey]['agil'],
+                monsterDict[monsterKey][monsterSubKey]['luck'], monsterDict[monsterKey][monsterSubKey]['drops'])
+    
+
