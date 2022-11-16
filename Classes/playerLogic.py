@@ -16,10 +16,6 @@ class Hero(Unit):
         self.manaMax = manaMax
         self.manaCurrent = self.manaMax
         self.inventory = {}
-
-    def Inventory(self):
-        for items in self.inventory:
-            print(f'{items} : {self.inventory[items]}  |  ')
         
 
     def levelUpCheck(self, monster):
@@ -65,8 +61,20 @@ class Hero(Unit):
             print(f'{self.name} found ')
 
 
-    def inventoryAccess():
-        pass
+    def inventoryAccess(self):
+        i = 1
+        for keys in self.inventory:
+
+            print(f'{i}. {keys} | {self.inventory[keys]}')
+            i += 1
+            
+        return i
+
+
+
+
+
+
 
 
                 

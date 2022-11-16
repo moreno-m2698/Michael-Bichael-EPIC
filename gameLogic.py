@@ -32,7 +32,7 @@ def rewards(hero, monster):
         dropsList = list(monster.drops)
         print(hero.inventory)
         for id in dropsList:
-            realItems = Items.itemSpawn(id)
+            realItems = Items.itemSpawn(id,hero)
             counter = 0
             success = 0
             while counter < monster.drops[id]['cycles']:
@@ -44,7 +44,10 @@ def rewards(hero, monster):
                         hero.inventory[realItems] = 1
                     success += 1
                 counter += 1
-            if success != 0:
-        
-                print(hero.inventory)            
+            if success != 0 and success == 1:
+                # Come back and find out how to reformat the brackets
+                print({f'Found {success} {realItems.name}!'})
+
+            elif success != 0 and success > 1:
+                print({f'Found {success} {realItems.name}s!'})                
         

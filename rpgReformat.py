@@ -5,7 +5,7 @@ from Classes.actions import Items
 from Classes.playerLogic import Hero
 from Classes.monsterLogic import Monster
 import gameLogic
-
+import time
 
 
 
@@ -38,10 +38,11 @@ def main():
                     print(hero)
                     print(enemy)
 
-                    action = int(input(f'What will {heroName} do?\n1. Attack\n2. Pass\n3. Use Potion \n4. End Game \n'))
+                    
+                    action = int(input(f'What will {heroName} do?\n1. Attack\n2. Pass\n3. Look at Inventory \n4. End Game \n'))
 
                     if action == 1:
-
+                        time.sleep(1)
                         Hero.attack(hero,enemy)
 
                         turn = 1
@@ -57,6 +58,35 @@ def main():
 
                         Hero.passTurn(hero)
                         turn = 1
+
+                    elif action == 3:
+                        if hero.inventory == {}:
+                            print(f"{heroName}'s inventory is empty.")
+                        else:
+                            index = Hero.inventoryAccess(hero)
+                            inventoryls = list(hero.inventory)
+                            
+                            while True:
+                                choice = input(f'Type the name of the item that you want to use or type "close" to close the inventory\n')
+                                if choice.isdigit() and not(int(choice) <= 0) and not(int(choice) >= index):
+                                    choice = int(choice)
+                                    #Write code for item use
+                                    action = inventoryls[choice - 1]
+                                    # Now we get into the item use code
+
+                                    
+
+                                    print(f'{heroName} used a {action.name}.')
+                                    break
+                                
+                                elif choice == 'close':
+                                    break
+                                else:
+                                    print('Please give a valid input.')
+
+                        
+                        
+
 
 
                     elif action == 4:

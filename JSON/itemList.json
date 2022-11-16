@@ -1,25 +1,44 @@
-{ "1000" : {
+{
+    "1000" : {
     "description": "Instantly heals for 20 HP - Single time use.",
-    "name": "Health Pot"
+    "name": "Health Pot",
+    "target": false,
+    "useStr": "drank the Health Pot and felt instantly revitalized.",
+    "turns": 0
 },
 "1001": {
     "description": "Instantly grants 10 MP - Single time use.",
-    "name": "Mana Pot"
+    "name": "Mana Pot",
+    "target": false,
+    "useStr": "drank the Health Pot and felt instantly renewed.",
+    "turns": 0
 },
 "1002": {
     "description": "Throw a rock at a target and deal damage - Single time use.",
-    "name": "Rock"
+    "name": "Rock",
+    "target": true,
+    "useStr": "threw the rock.",
+    "turns": 0
 },
 "1003": {
-    "description": "Heals 8 health over the course of 2 turns - Single time use.",
-    "name": "Lesser Healing Pot"
+    "description": "Heals 8 health over the course of 4 turns - Single time use.",
+    "name": "Lesser Healing Pot",
+    "target": false,
+    "useStr": "drank the potion.",
+    "turns": 4
 },
 "1004": {
     "description": "Throw at an enemy and damage them for 32 damage over 4 turns - Single time use.",
-    "name": "Damaging Tonic"
+    "name": "Damaging Tonic",
+    "target": true,
+    "useStr": "threw the damaging tonic.",
+    "turns": 4
 },
 "1005": {
     "description" : "Mysterious water, perhaps drinking it will do something - Single time use.",
-    "name": "Blessed Water"
+    "name": "Blessed Water",
+    "target": false,
+    "useStr": "drank the mysterious water. It seems to have no effect",
+    "turns": 2
 }
 }
