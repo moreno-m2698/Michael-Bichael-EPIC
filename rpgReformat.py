@@ -73,10 +73,9 @@ def main():
                                     #Write code for item use
                                     action = inventoryls[choice - 1]
                                     # Now we get into the item use code
-
-                                    
-
                                     print(f'{heroName} used a {action.name}.')
+                                    print(Items.use(action, hero, enemy))
+                                    
                                     break
                                 
                                 elif choice == 'close':
