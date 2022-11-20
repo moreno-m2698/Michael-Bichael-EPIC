@@ -29,6 +29,7 @@ def main():
             # This loop makes the game infinite
 
             enemy = gameLogic.encounter()
+            koProtection = True
 
             while not(hero.currentHp <= 0 or enemy.currentHp <= 0):
 
@@ -39,7 +40,7 @@ def main():
                     print(enemy)
 
                     
-                    action = int(input(f'What will {heroName} do?\n1. Attack\n2. Pass\n3. Look at Inventory \n4. End Game \n'))
+                    action = int(input(f'What will {heroName} do?\n1. Attack\n2. Pass\n3. Look at Inventory \n4. Run Away\n5. End Game\n'))
 
                     if action == 1:
                         time.sleep(1)
@@ -83,12 +84,23 @@ def main():
                                 else:
                                     print('Please give a valid input.')
 
-                        
-                        
-
-
-
                     elif action == 4:
+                        #respite
+                        print(f'{heroName} ran away...')
+                        i = 0
+                        while i < 3:
+                            time.sleep(.45)
+                            print("...")
+                            i += 1
+                        print("You come across a large clearing")
+                        while True:
+                            input("just ctrl c")
+
+                        
+
+
+
+                    elif action == 5:
                         break
 
                     else:
@@ -98,9 +110,13 @@ def main():
 
 
                 elif turn == 1:
+
                         
                     Monster.attack(enemy,hero)
-
+                    if koProtection:
+                        print(f"{heroName} did not succumb...")
+                        hero.currentHp = 1
+                    koProtection = False
                     turn = 0
 
                 if hero.currentHp <= 0:

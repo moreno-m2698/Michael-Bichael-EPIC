@@ -15,7 +15,8 @@ actionFtns = {
     
     "2000": lambda user, target: [user.currentHp + 20, target.currentHp],
     "2001": lambda user, target: [user.manaCurrent + 10, target.currentHp],
-    "2002": lambda user, target: [user.currentHp, target.currentHp - random.randint(1,9)]
+    "2002": lambda user, target: [user.currentHp, target.currentHp - random.randint(1,9)],
+    "2003": lambda user, target: [user.manaCurrent -5, target.currentHp - 30]
 
 
 
