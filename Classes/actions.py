@@ -1,59 +1,69 @@
 import random
 import json
+from dataclasses import dataclass
 
-class Action:
-    def __init__(self, name, description, id, owner, useStr):
+
         
-        self.name = name
-        self.id = id
-        self.description = description
-        self.owner = owner
-        self.useStr = useStr
-        
-        
-actionFtns = {
+# An item is defined from a JSON and the main thing it has is its function/what it does 
+
+# lambdas only give back expressions, they dont mutate any state
+
+
+
+class ItemFuncs:
+    def healthPot(user, target):
+        user.currentHp += 20
+        print(f"{user.name} has healed for 20 HP!")
+
+    def throwRock(user, target):
+        damage = random.randint(0,19) + user.atk - target.defense/2
+        target.currentHp -= damage
+        print(f"{user.name} threw the rock for {damage}! {target.name} is veggie :(")
+
+    def manaPot(user, target):
+        user.manaCurrent += 10
+        print(f"{user.name} has restored 10 MP!")
+         
+
+    def getFuncDictionary():
+
+        fDict = {"20heal": ItemFuncs.healthPot, "throwrock": ItemFuncs.throwRock}
+
+        return fDict
+
+
     
-    "2000": lambda user, target: [user.currentHp + 20, target.currentHp],
-    "2001": lambda user, target: [user.manaCurrent + 10, target.currentHp],
-    "2002": lambda user, target: [user.currentHp, target.currentHp - random.randint(1,9)],
-    "2003": lambda user, target: [user.manaCurrent -5, target.currentHp - 30]
 
 
 
-}
-
-
-
-class Items(Action):
-    def __init__(self, name, description, id, owner, useStr, useId, stat):
-        super().__init__(name, description, id, owner, useStr)
-        self.useId = useId
-        self.stat = stat
-        
-        
-
+@dataclass
+class Item:
+    name: str
+    description: str
+    useId: str
+    
     def __str__(self):
 
         return f'{self.name}: {self.description}'
     
-    def __eq__(self, item2):
-        return self.id == item2.id and self.owner == item2.owner
-    
-    def __hash__(self) -> int:  
-        return hash((self.id, self.owner))
-        
-
-    def itemSpawn(id, owner):
+    #give back a list from every single item in the json
+    def itemSpawn(functionDict):
         itemFile = open('JSON/itemList.json')
         itemDict = json.load(itemFile)
-        item = itemDict[id]
+        itemReturnList = {}
 
-        return Items(item['name'], item['description'], id, owner, item['useStr'], item['useId'], item['stat'])
+        for itemKey in itemDict.keys():
+            loadedJson = itemDict[itemKey]
+
+            newItem = Item(loadedJson["name"], loadedJson["description"], loadedJson["useId"])
+
+            itemReturnList[itemKey] = newItem
+
+        return itemReturnList
 
     def use(self, user, target):
-        print(f"{user.name} {self.useStr}")
-        resultList = actionFtns[self.useId](user, target)
-        return resultList
+        ItemFuncs.getFuncDictionary()[self.useId](user, target)
+
 
 
 
@@ -65,7 +75,7 @@ class Items(Action):
     
         
         
-class Specials(Action):
+class Specials:
     def __init__(self, name, description, cost, type, damage, healing):
         super().__init__(self, name, description, id)
         self.cost = cost
@@ -73,5 +83,5 @@ class Specials(Action):
         self.damage = damage
         self.healing = healing
         
-    def use():
+    def useSpecial():
         pass
