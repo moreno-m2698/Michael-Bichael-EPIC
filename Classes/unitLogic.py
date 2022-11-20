@@ -1,7 +1,7 @@
 import random
 import json
 import math
-from Classes.actions import Items
+from Classes.actions import Item
 
 
 

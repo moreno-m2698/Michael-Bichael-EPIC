@@ -2,7 +2,7 @@ import random
 import math
 from Classes.unitLogic import Unit
 import json
-from Classes.actions import Items
+from Classes.actions import Item
 
 
 
@@ -65,7 +65,7 @@ class Hero(Unit):
         i = 1
         for keys in self.inventory:
 
-            print(f'{i}. {keys} | {self.inventory[keys]}')
+            print(f'{i}. {keys.name} {keys.description} | {self.inventory[keys]}')
             i += 1
             
         return i

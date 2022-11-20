@@ -1,7 +1,7 @@
 import random
 import json
 import math
-from Classes.actions import Items
+from Classes.actions import Item, ItemFuncs
 from Classes.playerLogic import Hero
 from Classes.monsterLogic import Monster
 import gameLogic
@@ -9,8 +9,9 @@ import time
 
 
 
-def main():            
-
+def main():
+                
+    allItems = Item.itemSpawn(ItemFuncs.getFuncDictionary())
     turn = 0
 
 
@@ -67,15 +68,17 @@ def main():
                             index = Hero.inventoryAccess(hero)
                             inventoryls = list(hero.inventory)
                             
+                            
                             while True:
                                 choice = input(f'Type the name of the item that you want to use or type "close" to close the inventory\n')
                                 if choice.isdigit() and not(int(choice) <= 0) and not(int(choice) >= index):
                                     choice = int(choice)
                                     #Write code for item use
-                                    action = inventoryls[choice - 1]
+                                    currentItem = allItems[inventoryls[choice-1]]
+                                    
                                     # Now we get into the item use code
-                                    print(f'{heroName} used a {action.name}.')
-                                    print(Items.use(action, hero, enemy))
+                                    print(f'{heroName} used a {currentItem.name}.')
+                                    print(currentItem.use(hero, enemy))
                                     
                                     break
                                 
@@ -101,7 +104,8 @@ def main():
 
 
                     elif action == 5:
-                        break
+                        print("Exiting game!!")
+                        exit()
 
                     else:
 
@@ -121,7 +125,8 @@ def main():
 
                 if hero.currentHp <= 0:
                     print(f'{heroName} blacks out....\n Game Over')
-                    break
+                    exit()
+                    
 
             
 if __name__ == '__main__':
