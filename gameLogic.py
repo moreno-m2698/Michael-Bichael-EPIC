@@ -32,10 +32,10 @@ def rewards(hero, monster):
 
         #Logic behind it, make a list so that we can scan the dictionary keys but then call for the values of the keys using the dictionary and not the newly created list
         dropsList = list(monster.drops)
-        print(dropsList)
-        print(hero.inventory)
+        # print(dropsList)
+        # print(hero.inventory)
         for dropId in dropsList:
-            print(dropId)
+            # print(dropId)
             realItem = Item.itemSpawn(ItemFuncs.getFuncDictionary)[dropId]
             counter = 0
             success = 0

@@ -1,7 +1,7 @@
 import random
 import json
 import math
-from Classes.actions import Item
+
 
 
 
@@ -23,6 +23,8 @@ class Unit:
 
     def dodge(self):
         success = 1 == random.randint(1, 100 -  (4 * self.agil) - self.luck)
+        if success:
+            print(f'{self.name} dodged the attack!')
         return success
 
     
@@ -30,10 +32,8 @@ class Unit:
 
         print(f'{self.name} attacked the {target.name}!')
 
-        if Unit.dodge(target):
-            print(f'{target.name} dodged the attack!')
+        if not(Unit.dodge(target)):
             
-        else:
 
             critChance = random.randint(1, 50 - (2 * self.luck) - self.agil)
             damage = 0

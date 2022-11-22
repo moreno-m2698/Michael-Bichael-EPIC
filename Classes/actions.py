@@ -1,6 +1,7 @@
 import random
 import json
 from dataclasses import dataclass
+from Classes.unitLogic import Unit
 
 
         
@@ -27,13 +28,83 @@ class ItemFuncs:
 
     def getFuncDictionary():
 
-        fDict = {"20heal": ItemFuncs.healthPot, "throwrock": ItemFuncs.throwRock}
+        fDict = {"20heal": ItemFuncs.healthPot, "throwrock": ItemFuncs.throwRock, "10mana": ItemFuncs.manaPot}
 
+        return fDict
+
+def critChance(user):
+    chanceCap = 50 - (2 * user.luck) - user.agil
+    if chancealter <= 1:
+        chancealter = 1
+    critChance = 1 == random.randint(1, chanceCap)
+    if critChance:
+        print('It was a critical hit!')
+    return critChance
+
+
+class MoveFuncs:
+
+
+    def slash(user, target):
+        user.manaCurrent -= 5
+        damage = int(user.atk * 1.5)
+        print(f'{user.name} slashed at {target.name}!')
+        if not(Unit.dodge(target)):
+            if critChance(user):
+                damage = damage * 2
+            target.currentHp -= damage
+            print(f'{target.name} took {damage} damage.')
+    
+    def smallheal(user, target):
+        heal = int(user.maxHp / 6)
+        user.currentHp += heal
+        user.manaCurrent += 4
+        print(f'{user.name} healed for {heal} health.')
+    
+    def icicle(user, target):
+        damage = int(user.magic * 3 / 4)
+        user.manaCurrent -= 5
+        print(f'{user.name} launched an icicle at {target.name}')
+        if not(Unit.dodge(target)):
+            if critChance(user):
+                damage * 2
+            target.currentHp -= damage
+            target.agil -=1
+            print(f"{target.name} took {damage} damage.")
+    
+    def fireball(user, target):
+        mpCost = int(user.manaCurrent / 5)
+        damage = int(user.magic * 1.2 + mpCost)
+        user.manaCurrent -= mpCost
+        print(f'{user.name} launched a fireball at {target.name}')
+        if not(Unit.dodge(target)):
+            if critChance(user):
+                damage * 2
+            target.currentHp -= damage
+            print(f"{target.name} took {damage} damage.")
+
+    def ram(user,target):
+        damage = int(user.defense + (user.atk * 1.2))
+        user.manaCurrent -= 5
+        print(f'{user.name} charged {target.name}')
+        if critChance(user):
+             damage * 2
+        target.currentHp -= damage
+        print(f"{target.name} took {damage} damage.")
+    
+    def getMoveDict():
+
+        fDict = {
+           a : MoveFuncs.slash,
+           b : MoveFuncs.smallheal,
+           c : MoveFuncs.icicle,
+           d : MoveFuncs.fireball,
+           e : MoveFuncs.ram
+        }
         return fDict
 
 
     
-
 
 
 @dataclass
@@ -64,24 +135,8 @@ class Item:
     def use(self, user, target):
         ItemFuncs.getFuncDictionary()[self.useId](user, target)
 
-
-
-
-
-
-
-
-
-    
-        
-        
+@dataclass
 class Specials:
-    def __init__(self, name, description, cost, type, damage, healing):
-        super().__init__(self, name, description, id)
-        self.cost = cost
-        self.type = type
-        self.damage = damage
-        self.healing = healing
-        
-    def useSpecial():
-        pass
+    name: str
+    description: str
+    useId: str

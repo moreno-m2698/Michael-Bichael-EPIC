@@ -8,11 +8,11 @@
         "agil": 0,
         "luck": 0,
         "drops": { 
-            "HealthPot" : {
+            "1000" : {
                 "cycles": 2,
                 "chance": 1
         },
-        "ThrowRock" : {
+        "1001" : {
             "cycles": 2,
             "chance": 1
     }
@@ -27,11 +27,11 @@
         "agil": 0,
         "luck": 0,
         "drops": { 
-            "HealthPot" : {
+            "1000" : {
                 "cycles": 2,
                 "chance": 1
         },
-        "ThrowRock" : {
+        "1001" : {
             "cycles": 2,
             "chance": 1
     }
@@ -46,11 +46,11 @@
         "agil": 0,
         "luck": 0,
         "drops": { 
-            "HealthPot" : {
+            "1000" : {
                 "cycles": 2,
                 "chance": 1
         },
-        "ThrowRock" : {
+        "1001" : {
             "cycles": 2,
             "chance": 1
     }
@@ -64,11 +64,11 @@
             "agil": 0,
             "luck": 0,
             "drops": { 
-                "HealthPot" : {
+                "1000" : {
                     "cycles": 2,
                     "chance": 1
             },
-            "ThrowRock" : {
+            "1001" : {
                 "cycles": 2,
                 "chance": 1
 

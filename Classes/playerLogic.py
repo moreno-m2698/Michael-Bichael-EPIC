@@ -32,7 +32,7 @@ class Hero(Unit):
             # Come back later to get this
         
     def __str__(self):
-        return f'{super().__str__()} | {self.manaCurrent} / {self.manaMax}'
+        return f'{super().__str__()} | Mana: {self.manaCurrent} / {self.manaMax}'
     
     #Void function/None functions -> functions that dont have returns / dont give anything back / not expressions
     
@@ -61,11 +61,13 @@ class Hero(Unit):
             print(f'{self.name} found ')
 
 
-    def inventoryAccess(self):
+    def inventoryAccess(self, dict):
         i = 1
+        inv = self.inventory
+
         for keys in self.inventory:
 
-            print(f'{i}. {keys.name} {keys.description} | {self.inventory[keys]}')
+            print(f'{i}. {dict[keys].name} {dict[keys].description} | {inv[keys]}')
             i += 1
             
         return i
