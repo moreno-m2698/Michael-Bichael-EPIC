@@ -6,7 +6,11 @@
     "level": 5,
     "agil": 1,
     "luck": 0,
-    "maxMana": 30
+    "maxMana": 30,
+    "moves": 
+    [
+        "Slash", "Fireball", "Lesser Heal"
+    ]
 
 },
 "Bichael": {
@@ -17,5 +21,9 @@
     "level": 5,
     "agil": 1,
     "luck": 0,
-    "maxMana": 35
+    "maxMana": 35,
+    "moves": 
+    [
+        "Ram", "Icicle", "Lesser Heal"
+    ]
 }}

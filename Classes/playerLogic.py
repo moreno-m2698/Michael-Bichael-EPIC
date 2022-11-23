@@ -2,13 +2,13 @@ import random
 import math
 from Classes.unitLogic import Unit
 import json
-from Classes.actions import Item
+from Classes.actions import MoveFuncs, Specials
 
 
 
 class Hero(Unit):
     #these are dunder functions __x___
-    def __init__(self, name: str, atk: int, defense: int, maxHp: int, magic: int, level: int, agil: int, luck: int, manaMax:int):
+    def __init__(self, name: str, atk: int, defense: int, maxHp: int, magic: int, level: int, agil: int, luck: int, manaMax:int, moves: list):
         super().__init__(name, atk, defense, maxHp, magic, level, agil, luck)
         self.monstersKilled = 0
         self.currentExp= 0
@@ -16,6 +16,7 @@ class Hero(Unit):
         self.manaMax = manaMax
         self.manaCurrent = self.manaMax
         self.inventory = {}
+        self.moves = moves
         
 
     def levelUpCheck(self, monster):
@@ -50,7 +51,7 @@ class Hero(Unit):
 
         hero = heroDict[name]
 
-        return Hero(name, hero['atk'], hero['defense'], hero['maxHp'],hero['magic'], hero['level'], hero['agil'], hero['luck'], hero['maxMana'])
+        return Hero(name, hero['atk'], hero['defense'], hero['maxHp'],hero['magic'], hero['level'], hero['agil'], hero['luck'], hero['maxMana'], hero["moves"])
     
     def giveItem(self, item, amount):
 
@@ -68,6 +69,18 @@ class Hero(Unit):
         for keys in self.inventory:
 
             print(f'{i}. {dict[keys].name} {dict[keys].description} | {inv[keys]}')
+            i += 1
+            
+        return i
+
+    def movesAccess(self):
+        i = 1
+        moveList = self.moves
+        
+
+        for move in range(0, len(moveList)):
+
+            print(f'{i}. {moveList[move].name} {moveList[move].description} | Cost: {Specials.costCalc(moveList[move], self.manaCurrent)}')
             i += 1
             
         return i

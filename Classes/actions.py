@@ -73,7 +73,7 @@ class MoveFuncs:
             print(f"{target.name} took {damage} damage.")
     
     def fireball(user, target):
-        mpCost = int(user.manaCurrent / 5)
+        mpCost = MoveFuncs.fireballmp(user)
         damage = int(user.magic * 1.2 + mpCost)
         user.manaCurrent -= mpCost
         print(f'{user.name} launched a fireball at {target.name}')
@@ -92,14 +92,17 @@ class MoveFuncs:
         target.currentHp -= damage
         print(f"{target.name} took {damage} damage.")
     
+    def fireballmp(user):
+        return user.manaCurrent/5
+    
     def getMoveDict():
 
         fDict = {
-           a : MoveFuncs.slash,
-           b : MoveFuncs.smallheal,
-           c : MoveFuncs.icicle,
-           d : MoveFuncs.fireball,
-           e : MoveFuncs.ram
+           "slashftn" : MoveFuncs.slash,
+           "smallhealftn" : MoveFuncs.smallheal,
+           "icicleftn" : MoveFuncs.icicle,
+           "fireballftn" : MoveFuncs.fireball,
+           "ramftn" : MoveFuncs.ram
         }
         return fDict
 
@@ -140,3 +143,33 @@ class Specials:
     name: str
     description: str
     useId: str
+    cost: str
+
+    def __str__(self):
+        return f'{self.name}: {self.description}'
+
+    def moveSpawn(functionDict):
+        moveFile = open('JSON/specialMoves.json')
+        moveDict = json.load(moveFile)
+        moveReturnList = {}
+
+        for moveKey in moveDict.keys():
+            loadedJson = moveDict[moveKey]
+
+            newMove = Specials(moveKey, loadedJson["description"], loadedJson["useId"], loadedJson["cost"])
+
+            moveReturnList[moveKey] = newMove
+    
+        return moveReturnList
+
+    def costCalc(self, user):
+        if self.cost.isdigit():
+            mana = int(self.cost)
+            return mana
+        else:
+            mana = self.cost(user.manaCurrent)
+            return mana
+
+
+    def active(self, user, target):
+        MoveFuncs.getMoveDict()[self.useId](user,target)

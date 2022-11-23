@@ -1,7 +1,7 @@
 import random
 import json
 import math
-from Classes.actions import Item, ItemFuncs
+from Classes.actions import Item, ItemFuncs, Specials, MoveFuncs
 from Classes.playerLogic import Hero
 from Classes.monsterLogic import Monster
 import gameLogic
@@ -19,7 +19,9 @@ def bar():
 def main():
                 
     allItems = Item.itemSpawn(ItemFuncs.getFuncDictionary())
+    allMoves = Specials.moveSpawn(MoveFuncs.getMoveDict())
     turn = 0
+    print(allMoves)
 
 
     print("Welcome to Michael and Bichael's slime massacre RPG.\nDo you want to play as Michael or Bichael?")
@@ -69,6 +71,9 @@ def main():
                             
                             break
 
+                    elif action == 2:
+                        Hero.movesAccess(hero)
+
                     elif action == 4:
 
                         Hero.passTurn(hero)
@@ -114,9 +119,6 @@ def main():
                         print("You come across a large clearing")
                         while True:
                             input("just ctrl c")
-
-                        
-
 
 
                     elif action == 6:

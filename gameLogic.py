@@ -5,7 +5,7 @@ from Classes.actions import Item
 
 from Classes.playerLogic import Hero
 from Classes.monsterLogic import Monster
-from Classes.actions import ItemFuncs
+from Classes.actions import ItemFuncs, MoveFuncs, Specials
 
 def encounter():
     fileInUse = 'JSON/slime.json'
