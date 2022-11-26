@@ -1,17 +1,17 @@
 {
-    "HealthPot" : {
+    "1000" : {
     "description": "Instantly heals for 20 HP - Single time use.",
     "name": "Health Pot",
     "useId": "20heal"
     
 },
-"ThrowRock" : {
-    "description": "Throws a huge rock for 10 HP - Single time use.",
+"1001" : {
+    "description": "Throws a rock for 10 HP - Single time use.",
     "name": "Rock",
     "useId": "throwrock"
     
 },
-"ManaPot" : {
+"1002" : {
     "description": "Instantly restores 10 MP - Single time use.",
     "name": "Mana Pot",
     "useId": "10mana"

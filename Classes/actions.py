@@ -1,6 +1,7 @@
 import random
 import json
 from dataclasses import dataclass
+from Classes.unitLogic import Unit
 
 
         
@@ -33,15 +34,92 @@ class ItemFuncs:
 
     def getFuncDictionary():
 
+<<<<<<< HEAD
         fDict = {"20heal": ItemFuncs.healthPot, "throwrock": ItemFuncs.throwRock, "10mp": ItemFuncs.manaPot}
+=======
+        fDict = {"20heal": ItemFuncs.healthPot, "throwrock": ItemFuncs.throwRock, "10mana": ItemFuncs.manaPot}
+>>>>>>> cea9a74912ed4c06014d30410f54e26fc0f4abf6
 
         return fDict
     
 
 
+def critChance(user):
+    chanceCap = 50 - (2 * user.luck) - user.agil
+    if chancealter <= 1:
+        chancealter = 1
+    critChance = 1 == random.randint(1, chanceCap)
+    if critChance:
+        print('It was a critical hit!')
+    return critChance
+
+
+class MoveFuncs:
+
+
+    def slash(user, target):
+        user.manaCurrent -= 5
+        damage = int(user.atk * 1.5)
+        print(f'{user.name} slashed at {target.name}!')
+        if not(Unit.dodge(target)):
+            if critChance(user):
+                damage = damage * 2
+            target.currentHp -= damage
+            print(f'{target.name} took {damage} damage.')
+    
+    def smallheal(user, target):
+        heal = int(user.maxHp / 6)
+        user.currentHp += heal
+        user.manaCurrent += 4
+        print(f'{user.name} healed for {heal} health.')
+    
+    def icicle(user, target):
+        damage = int(user.magic * 3 / 4)
+        user.manaCurrent -= 5
+        print(f'{user.name} launched an icicle at {target.name}')
+        if not(Unit.dodge(target)):
+            if critChance(user):
+                damage * 2
+            target.currentHp -= damage
+            target.agil -=1
+            print(f"{target.name} took {damage} damage.")
+    
+    def fireball(user, target):
+        mpCost = MoveFuncs.fireballmp(user)
+        damage = int(user.magic * 1.2 + mpCost)
+        user.manaCurrent -= mpCost
+        print(f'{user.name} launched a fireball at {target.name}')
+        if not(Unit.dodge(target)):
+            if critChance(user):
+                damage * 2
+            target.currentHp -= damage
+            print(f"{target.name} took {damage} damage.")
+
+    def ram(user,target):
+        damage = int(user.defense + (user.atk * 1.2))
+        user.manaCurrent -= 5
+        print(f'{user.name} charged {target.name}')
+        if critChance(user):
+             damage * 2
+        target.currentHp -= damage
+        print(f"{target.name} took {damage} damage.")
+    
+    def fireballmp(user):
+        return user.manaCurrent/5
+    
+    def getMoveDict():
+
+        fDict = {
+           "slashftn" : MoveFuncs.slash,
+           "smallhealftn" : MoveFuncs.smallheal,
+           "icicleftn" : MoveFuncs.icicle,
+           "fireballftn" : MoveFuncs.fireball,
+           "ramftn" : MoveFuncs.ram
+        }
+        return fDict
+
 
     
-
 
 
 @dataclass
@@ -72,24 +150,38 @@ class Item:
     def use(self, user, target):
         ItemFuncs.getFuncDictionary()[self.useId](user, target)
 
-
-
-
-
-
-
-
-
-    
-        
-        
+@dataclass
 class Specials:
-    def __init__(self, name, description, cost, type, damage, healing):
-        super().__init__(self, name, description, id)
-        self.cost = cost
-        self.type = type
-        self.damage = damage
-        self.healing = healing
-        
-    def useSpecial():
-        pass
+    name: str
+    description: str
+    useId: str
+    cost: str
+
+    def __str__(self):
+        return f'{self.name}: {self.description}'
+
+    def moveSpawn(functionDict):
+        moveFile = open('JSON/specialMoves.json')
+        moveDict = json.load(moveFile)
+        moveReturnList = {}
+
+        for moveKey in moveDict.keys():
+            loadedJson = moveDict[moveKey]
+
+            newMove = Specials(moveKey, loadedJson["description"], loadedJson["useId"], loadedJson["cost"])
+
+            moveReturnList[moveKey] = newMove
+    
+        return moveReturnList
+
+    def costCalc(self, user):
+        if self.cost.isdigit():
+            mana = int(self.cost)
+            return mana
+        else:
+            mana = self.cost(user.manaCurrent)
+            return mana
+
+
+    def active(self, user, target):
+        MoveFuncs.getMoveDict()[self.useId](user,target)

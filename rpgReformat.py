@@ -1,18 +1,27 @@
 import random
 import json
 import math
-from Classes.actions import Item, ItemFuncs
+from Classes.actions import Item, ItemFuncs, Specials, MoveFuncs
 from Classes.playerLogic import Hero
 from Classes.monsterLogic import Monster
 import gameLogic
 import time
 
+def topBar():
+    print('------------------/\------------------')
 
+def bottomBar():
+    print('------------------\/------------------')
+def bar():
+    print('--------------------------------------')
+    time.sleep(1)
 
 def main():
                 
     allItems = Item.itemSpawn(ItemFuncs.getFuncDictionary())
+    allMoves = Specials.moveSpawn(MoveFuncs.getMoveDict())
     turn = 0
+    print(allMoves)
 
 
     print("Welcome to Michael and Bichael's slime massacre RPG.\nDo you want to play as Michael or Bichael?")
@@ -28,7 +37,7 @@ def main():
 
         while True:
             # This loop makes the game infinite
-
+            time.sleep(.45)
             enemy = gameLogic.encounter()
             koProtection = True
 
@@ -40,12 +49,16 @@ def main():
                     print(hero)
                     print(enemy)
 
-                    
-                    action = int(input(f'What will {heroName} do?\n1. Attack\n2. Pass\n3. Look at Inventory \n4. Run Away\n5. End Game\n'))
-
+                
+                    time.sleep(1)
+                    topBar()
+                    action = print(f'What will {heroName} do?\n1. Attack\n2. Spcial Move\n3. Look at Inventory \n4. Pass\n5. Run Away\n6. End Game')
+                    bottomBar()
+                    action = int(input())
                     if action == 1:
                         time.sleep(1)
                         Hero.attack(hero,enemy)
+                        bar()
 
                         turn = 1
 
@@ -53,19 +66,26 @@ def main():
 
                             print(f'You defeated the {enemy.name}!')
                             gameLogic.rewards(hero,enemy)
+                            turn = 0
+                            bar()
                             
                             break
 
                     elif action == 2:
+                        Hero.movesAccess(hero)
+
+                    elif action == 4:
 
                         Hero.passTurn(hero)
+                        bar()
                         turn = 1
 
                     elif action == 3:
+
                         if hero.inventory == {}:
                             print(f"{heroName}'s inventory is empty.")
                         else:
-                            index = Hero.inventoryAccess(hero)
+                            index = Hero.inventoryAccess(hero, allItems)
                             inventoryls = list(hero.inventory)
                             
                             
@@ -79,6 +99,7 @@ def main():
                                     # Now we get into the item use code
                                     print(f'{heroName} used a {currentItem.name}.')
                                     print(currentItem.use(hero, enemy))
+                                    turn = 1
                                     
                                     break
                                 
@@ -87,7 +108,7 @@ def main():
                                 else:
                                     print('Please give a valid input.')
 
-                    elif action == 4:
+                    elif action == 5:
                         #respite
                         print(f'{heroName} ran away...')
                         i = 0
@@ -99,11 +120,8 @@ def main():
                         while True:
                             input("just ctrl c")
 
-                        
 
-
-
-                    elif action == 5:
+                    elif action == 6:
                         print("Exiting game!!")
                         exit()
 
@@ -117,10 +135,11 @@ def main():
 
                         
                     Monster.attack(enemy,hero)
-                    if koProtection:
+                    if koProtection and hero.currentHp <= 0:
                         print(f"{heroName} did not succumb...")
                         hero.currentHp = 1
                     koProtection = False
+                    bar()
                     turn = 0
 
                 if hero.currentHp <= 0:
