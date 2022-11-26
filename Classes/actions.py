@@ -8,6 +8,10 @@ from dataclasses import dataclass
 
 # lambdas only give back expressions, they dont mutate any state
 
+# class Status:
+#     def poison(counter):
+#come back and talk about lists
+
 
 
 class ItemFuncs:
@@ -23,13 +27,17 @@ class ItemFuncs:
     def manaPot(user, target):
         user.manaCurrent += 10
         print(f"{user.name} has restored 10 MP!")
-         
+    
+    # def addPoison(user,target):
+    #     user.status = 'poison'
 
     def getFuncDictionary():
 
-        fDict = {"20heal": ItemFuncs.healthPot, "throwrock": ItemFuncs.throwRock}
+        fDict = {"20heal": ItemFuncs.healthPot, "throwrock": ItemFuncs.throwRock, "10mp": ItemFuncs.manaPot}
 
         return fDict
+    
+
 
 
     
