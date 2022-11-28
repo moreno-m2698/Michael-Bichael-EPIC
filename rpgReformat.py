@@ -21,8 +21,7 @@ def main():
     allItems = Item.itemSpawn(ItemFuncs.getFuncDictionary())
     allMoves = Specials.moveSpawn(MoveFuncs.getMoveDict())
     turn = 0
-    print(allMoves)
-
+    
 
     print("Welcome to Michael and Bichael's slime massacre RPG.\nDo you want to play as Michael or Bichael?")
     heroName = input()
@@ -52,7 +51,7 @@ def main():
                 
                     time.sleep(1)
                     topBar()
-                    action = print(f'What will {heroName} do?\n1. Attack\n2. Spcial Move\n3. Look at Inventory \n4. Pass\n5. Run Away\n6. End Game')
+                    action = print(f'What will {heroName} do?\n1. Attack\n2. Special Move\n3. Look at Inventory \n4. Pass\n5. Run Away\n6. End Game')
                     bottomBar()
                     action = int(input())
                     if action == 1:
@@ -62,18 +61,42 @@ def main():
 
                         turn = 1
 
-                        if enemy.currentHp <= 0:
-
-                            print(f'You defeated the {enemy.name}!')
-                            gameLogic.rewards(hero,enemy)
-                            turn = 0
-                            bar()
-                            
-                            break
+                        
 
                     elif action == 2:
-                        Hero.movesAccess(hero)
+                        
+                        
+                        index = Hero.movesAccess(hero,allMoves)
+                        movels = list(hero.moves)
 
+                        while True:
+                                print(f'Type the name of the item that you want to use or type "close" to close the inventory\n')
+                                bar()
+                                choice = input()
+
+
+                                if choice.isdigit() and not(int(choice) <= 0) and not(int(choice) >= index):
+                                    choice = int(choice)
+                                    
+                                    #Write code for item use
+                                    currentMove = allMoves[movels[choice-1]]
+                                    ManaCost = Specials.costCalc(currentMove.cost,hero)
+                                    if ManaCost > hero.manaCurrent:
+                                        print(f"{hero.name} doesn't have enough mana")
+                                    else:
+                                        # Now we get into the item use code
+                                        print(f'{heroName} used {currentMove.name}.')
+                                        print(currentMove.active(hero, enemy))
+                                        turn = 1
+                                        break
+                                    
+
+                                
+                                elif choice == 'close':
+                                    break
+                                else:
+                                    print('Please give a valid input.')
+                            
                     elif action == 4:
 
                         Hero.passTurn(hero)
@@ -128,6 +151,15 @@ def main():
                     else:
 
                         print('Please give a valid input')
+
+                    if enemy.currentHp <= 0:
+
+                            print(f'You defeated the {enemy.name}!')
+                            gameLogic.rewards(hero,enemy)
+                            turn = 0
+                            bar()
+                            
+                            break
 
 
 

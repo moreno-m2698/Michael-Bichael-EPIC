@@ -34,11 +34,7 @@ class ItemFuncs:
 
     def getFuncDictionary():
 
-<<<<<<< HEAD
         fDict = {"20heal": ItemFuncs.healthPot, "throwrock": ItemFuncs.throwRock, "10mp": ItemFuncs.manaPot}
-=======
-        fDict = {"20heal": ItemFuncs.healthPot, "throwrock": ItemFuncs.throwRock, "10mana": ItemFuncs.manaPot}
->>>>>>> cea9a74912ed4c06014d30410f54e26fc0f4abf6
 
         return fDict
     
@@ -46,8 +42,8 @@ class ItemFuncs:
 
 def critChance(user):
     chanceCap = 50 - (2 * user.luck) - user.agil
-    if chancealter <= 1:
-        chancealter = 1
+    if chanceCap < 1:
+        chancCap = 1
     critChance = 1 == random.randint(1, chanceCap)
     if critChance:
         print('It was a critical hit!')
@@ -70,7 +66,7 @@ class MoveFuncs:
     def smallheal(user, target):
         heal = int(user.maxHp / 6)
         user.currentHp += heal
-        user.manaCurrent += 4
+        user.manaCurrent -= 4
         print(f'{user.name} healed for {heal} health.')
     
     def icicle(user, target):
@@ -105,7 +101,7 @@ class MoveFuncs:
         print(f"{target.name} took {damage} damage.")
     
     def fireballmp(user):
-        return user.manaCurrent/5
+        return int(user.manaCurrent/5)
     
     def getMoveDict():
 
@@ -114,7 +110,8 @@ class MoveFuncs:
            "smallhealftn" : MoveFuncs.smallheal,
            "icicleftn" : MoveFuncs.icicle,
            "fireballftn" : MoveFuncs.fireball,
-           "ramftn" : MoveFuncs.ram
+           "ramftn" : MoveFuncs.ram,
+           "fireballmp": MoveFuncs.fireballmp
         }
         return fDict
 
@@ -175,11 +172,11 @@ class Specials:
         return moveReturnList
 
     def costCalc(self, user):
-        if self.cost.isdigit():
-            mana = int(self.cost)
+        if self.isdigit():
+            mana = int(self)
             return mana
         else:
-            mana = self.cost(user.manaCurrent)
+            mana = MoveFuncs.getMoveDict()[self](user)
             return mana
 
 

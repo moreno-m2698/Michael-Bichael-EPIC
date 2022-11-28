@@ -73,14 +73,14 @@ class Hero(Unit):
             
         return i
 
-    def movesAccess(self):
+    def movesAccess(self, dict):
         i = 1
         moveList = self.moves
         
 
-        for move in range(0, len(moveList)):
+        for move in self.moves:
 
-            print(f'{i}. {moveList[move].name} {moveList[move].description} | Cost: {Specials.costCalc(moveList[move], self.manaCurrent)}')
+            print(f'{i}. {dict[move].name}: {dict[move].description} | Cost: {Specials.costCalc(dict[move].cost, self)}')
             i += 1
             
         return i
