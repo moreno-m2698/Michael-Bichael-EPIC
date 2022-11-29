@@ -86,7 +86,7 @@ def main():
                                     else:
                                         # Now we get into the item use code
                                         print(f'{heroName} used {currentMove.name}.')
-                                        print(currentMove.active(hero, enemy))
+                                        # print(currentMove.active(hero, enemy))
                                         turn = 1
                                         break
                                     
@@ -121,7 +121,6 @@ def main():
                                     
                                     # Now we get into the item use code
                                     print(f'{heroName} used a {currentItem.name}.')
-                                    print(currentItem.use(hero, enemy))
                                     turn = 1
                                     
                                     break
